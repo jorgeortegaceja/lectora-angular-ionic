@@ -1,0 +1,46 @@
+<ion-card-header >
+  <ion-card-title text-center>Reading the barcode</ion-card-title>
+  <ion-card-subtitle text-center>welcome to the your new app</ion-card-subtitle>
+</ion-card-header>
+
+
+<ion-card-content>
+  <img class="logo" src="assets/logo/579358.svg" alt="">
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="floating">
+        email
+      </ion-label>
+      <ion-input formControlName="email" type="text" name="email"></ion-input>
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.email">
+        <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+          {{ error.message }}
+        </div>
+      </ng-container>
+      
+    </div>
+    <ion-item>
+      <ion-label position="floating">
+        password
+      </ion-label>
+      <ion-input formControlName="password" type="password" name="password"></ion-input>
+    </ion-item>
+    <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.password">
+          <div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            {{ error.message }}
+
+         
+          </div>
+        </ng-container>
+        
+      </div>
+    <br>
+    <ion-button (click)="onLogin()" [disabled]="!loginForm.valid" expand="block" shape="round">
+      <ion-icon slot="start" name="contact"></ion-icon>
+      Login
+    </ion-button>
+  </form>
+</ion-card-content>
